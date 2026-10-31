@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Opening the game…</title>
+<style>body{font-family:system-ui,sans-serif;padding:24px;color:#1E2A2D}</style></head>
+<body><p id="m">Opening the game…</p>
+<script>
+fetch('target.txt?'+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const base=t.split(/\r?\n/)[0].trim().replace(/\/+$/,'');
+ if(!/^https?:\/\//.test(base)){document.getElementById('m').textContent='The game address has not been set yet. Ask the facilitator.';return;}
+ location.replace(base+'/'+location.search);}).catch(()=>{document.getElementById('m').textContent='Could not reach the game. Ask the facilitator for the address.';});
+</script></body></html>
